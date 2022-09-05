@@ -11,8 +11,11 @@
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/button_bg.xml" value="0.3665" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/button_bg_grey.xml" value="0.1" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/circle.xml" value="0.179" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/custom_seekbar.xml" value="0.2735" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/custome_seekbar.xml" value="0.2735" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/edt_cursor.xml" value="0.3665" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/group_list_bg.xml" value="0.3145" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/ic_applogo.xml" value="0.308" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2355" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/ic_bill_icon.xml" value="0.323" />
@@ -31,8 +34,9 @@
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/added_participents_layout.xml" value="0.5" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/avatar_layout.xml" value="0.5" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/create_group_dialog.xml" value="0.49577464788732395" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/fragment_bills.xml" value="0.26979166666666665" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/fragment_dashboard.xml" value="0.22604166666666667" />
-        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/friend_card_layout.xml" value="0.33" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/group_bill_layout.xml" value="0.3223958333333333" />

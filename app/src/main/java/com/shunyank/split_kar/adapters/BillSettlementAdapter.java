@@ -1,6 +1,7 @@
 package com.shunyank.split_kar.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,15 @@ public class BillSettlementAdapter extends RecyclerView.Adapter<BillSettlementAd
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         SettlementModel model = data.get(position);
 
+        if(model.isIs_settled()){
+
+            holder.cleared.setVisibility(View.VISIBLE);
+            holder.requestBtn.setVisibility(View.GONE);
+            holder.settleByUpi.setVisibility(View.GONE);
+            holder.settleByCash.setVisibility(View.GONE);
+            holder.settleAsAdmin.setVisibility(View.GONE);
+
+        }
         holder.requestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,22 +109,63 @@ public class BillSettlementAdapter extends RecyclerView.Adapter<BillSettlementAd
             holder.payer_name.setText(SharedPref.getMyName(context)+"\n(you)");
             holder.receiver_name.setText(model.getReceiver_member_name());
             holder.amount.setTextColor(context.getResources().getColor(R.color.red));
+            if(model.isIs_settled()) {
+                holder.amount.setTextColor(context.getResources().getColor(R.color.grey_50));
+            }
 
-            holder.requestBtn.setVisibility(View.GONE);
-            holder.settleByUpi.setVisibility(View.VISIBLE);
-            holder.settleByCash.setVisibility(View.VISIBLE);
-            holder.settleAsAdmin.setVisibility(View.GONE);
 
+            if(!model.isIs_settled()) {
+
+                holder.requestBtn.setVisibility(View.GONE);
+                holder.settleByCash.setVisibility(View.VISIBLE);
+                holder.settleAsAdmin.setVisibility(View.GONE);
+            }
+
+
+            if(model.isReceiver_member_is_on_app()){
+
+                if(!model.getReceiver_user_data().isEmpty()){
+
+                    GroupActivity.UserModelForGroupMember modelForGroupMember = new Gson().fromJson(model.getReceiver_user_data(), GroupActivity.UserModelForGroupMember.class);
+                    if(modelForGroupMember.getUpi_id()!=null){
+                        Log.e("upi",modelForGroupMember.getUpi_id());
+                        if(modelForGroupMember.getUpi_id().isEmpty()){
+                            holder.settleByUpi.setVisibility(View.GONE);
+                        }
+                        else {
+                            holder.settleByUpi.setVisibility(View.VISIBLE);
+                        }
+
+                    }else {
+                        holder.settleByUpi.setVisibility(View.GONE);
+
+                    }
+
+                }else {
+                    holder.settleByUpi.setVisibility(View.GONE);
+
+                }
+            }else {
+                holder.settleByUpi.setVisibility(View.GONE);
+
+            }
         }else if(model.getReceiver_member_number().contentEquals(SharedPref.getMyPhoneNumber(context))) {
             // You are receiver
             holder.payer_name.setText(model.getPayer_member_name());
             holder.receiver_name.setText(SharedPref.getMyName(context)+"\n(you)");
             holder.amount.setTextColor(context.getResources().getColor(R.color.green));
-            holder.requestBtn.setVisibility(View.VISIBLE);
-            holder.settleByUpi.setVisibility(View.GONE);
-            holder.settleByCash.setVisibility(View.VISIBLE);
-            holder.settleAsAdmin.setVisibility(View.GONE);
 
+            if(model.isIs_settled()) {
+                holder.amount.setTextColor(context.getResources().getColor(R.color.grey_50));
+
+            }
+            if(!model.isIs_settled()) {
+
+                holder.requestBtn.setVisibility(View.VISIBLE);
+                holder.settleByUpi.setVisibility(View.GONE);
+                holder.settleByCash.setVisibility(View.VISIBLE);
+                holder.settleAsAdmin.setVisibility(View.GONE);
+            }
         }else {
 
             // you are not included in the settlement
@@ -122,11 +173,12 @@ public class BillSettlementAdapter extends RecyclerView.Adapter<BillSettlementAd
             holder.receiver_name.setText(model.getReceiver_member_name());
             holder.amount.setTextColor(context.getResources().getColor(R.color.black));
 
-            holder.requestBtn.setVisibility(View.GONE);
-            holder.settleByUpi.setVisibility(View.GONE);
-            holder.settleByCash.setVisibility(View.GONE);
-            holder.settleAsAdmin.setVisibility(View.VISIBLE);
-
+            if(!model.isIs_settled()) {
+                holder.requestBtn.setVisibility(View.GONE);
+                holder.settleByUpi.setVisibility(View.GONE);
+                holder.settleByCash.setVisibility(View.GONE);
+                holder.settleAsAdmin.setVisibility(View.VISIBLE);
+            }
         }
         if(model.isReceiver_member_is_on_app()){
             GroupActivity.UserModelForGroupMember userModelForGroupMember  = new Gson().fromJson(model.getReceiver_user_data(),

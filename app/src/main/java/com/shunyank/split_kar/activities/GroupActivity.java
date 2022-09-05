@@ -53,6 +53,8 @@ public class GroupActivity extends AppCompatActivity {
     boolean onPause = false;
     double totalExpense =0;
     String calculatedBillModels = "";
+    private ArrayList<BillModel> billModels;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +130,8 @@ public class GroupActivity extends AppCompatActivity {
                 groupBinding.getOrPay.setVisibility(View.VISIBLE);
                 groupBinding.getOrPay.setText("₹"+ getFloatValue(Float.parseFloat(s)));
 
+                // why here because we are posting balance data at one point of time
+                groupBillsAdapter.setDataList(billModels);
             }
         });
 
@@ -243,6 +247,7 @@ public class GroupActivity extends AppCompatActivity {
 
     private void findBills(String groupId) {
         totalExpense = 0;
+        billModels  = new ArrayList<>();
         List<Object> searchQuery = new ArrayList<>();
         searchQuery.add(Query.Companion.equal("group_id",groupId));
         DatabaseUtils.fetchDocuments(GroupActivity.this,
@@ -257,7 +262,7 @@ public class GroupActivity extends AppCompatActivity {
                             hideNoBillLayout();
                             //Helper.ConvertTimeStampToDate(gm.getCreatedAt())
                             // setup adapter
-                            ArrayList<BillModel> billModels = DatabaseUtils.convertToModelList(documents,BillModel.class);
+                            billModels = DatabaseUtils.convertToModelList(documents,BillModel.class);
                             Log.e("billModels",new Gson().toJson(billModels));
                             for (BillModel billModel:billModels){
                                 groupActivityViewHolder.fetchBillsData(GroupActivity.this,billModel,groupId,sharedPref.getUserId(),billModels,groupBillsAdapter);
@@ -265,7 +270,7 @@ public class GroupActivity extends AppCompatActivity {
                             }
                             groupBinding.totalExpense.setText("₹"+ String.valueOf( totalExpense));
                             // now we know that there are some bills to calculate now we can show the balance section
-                            groupActivityViewHolder.fetchMyBalance(GroupActivity.this,groupId,sharedPref.getUserId(),billModels,groupBillsAdapter);
+                            groupActivityViewHolder.fetchMyBalance(GroupActivity.this,groupId,sharedPref.getUserId());
                             showBalanceSection();
 
 

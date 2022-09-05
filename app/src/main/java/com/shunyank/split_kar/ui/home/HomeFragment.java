@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
     GroupListAdapter friendsGroupListAdapter;
     private HomeViewModel homeViewModel;
     private CountDownTimer countdown;
+    private boolean paused=false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -126,6 +127,11 @@ public class HomeFragment extends Fragment {
             public void onChanged(ArrayList<GroupModel> groupModels) {
 
                     if(groupModels.size()>0){
+
+
+
+
+
                         binding.noGroupsLayout.setVisibility(View.GONE);
                     }else {
                         binding.noGroupsLayout.setVisibility(View.VISIBLE);
@@ -140,8 +146,37 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<GroupModel> groupModels) {
                 Log.e("Friend   groupModels",new Gson().toJson(groupModels));
+                if(groupModels.size()==0) {
+                    binding.friendsGroupsTitle.setVisibility(View.GONE);
+                }else {
+                    binding.friendsGroupsTitle.setVisibility(View.VISIBLE);
+
+                }
+
                 friendsGroupListAdapter.setData(groupModels);
                 friendsGroupListAdapter.notifyDataSetChanged();
+            }
+        });
+
+        homeViewModel.youNeedToPay.observe(requireActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Log.e("YOu need to pay ", s);
+                binding.youNeedToPay.setText("₹"+s);
+            }
+        });
+        homeViewModel.youWillGet.observe(requireActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Log.e("YOu will get ", s);
+                binding.youwillGet.setText("₹"+s);
+            }
+        });
+
+        binding.addBillButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createGroup();
             }
         });
 
@@ -156,6 +191,21 @@ public class HomeFragment extends Fragment {
             List<Object> searchQuery = new ArrayList<>();
             searchQuery.add(Query.Companion.equal("is_admin", false));
             searchQuery.add(Query.Companion.equal("member_app_id", userId));
+            List<Object> searchQuery2 = new ArrayList<>();
+            searchQuery2.add(Query.Companion.equal("member_app_id", userId));
+
+            homeViewModel.listMyAllGroups(getActivity(), database, searchQuery2, new ErrorListener() {
+                @Override
+                public void onFailedError(Result.Failure failure) {
+
+                }
+
+                @Override
+                public void onException(Exception e) {
+
+                }
+            });
+
             homeViewModel.listFriendsGroups(getActivity(), database, searchQuery, new ErrorListener() {
                 @Override
                 public void onFailedError(Result.Failure failure) {
@@ -234,6 +284,12 @@ public class HomeFragment extends Fragment {
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        paused = true;
     }
 
     @Override

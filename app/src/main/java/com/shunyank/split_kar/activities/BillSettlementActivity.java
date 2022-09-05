@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +42,7 @@ import com.shunyank.split_kar.utils.SharedPref;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import io.appwrite.Query;
@@ -61,6 +64,7 @@ public class BillSettlementActivity extends AppCompatActivity {
     int count =0;
     ArrayList<SettlementModel> transactions = new ArrayList<>();
     BillSettlementAdapter billSettlementAdapter;
+    BillSettlementAdapter paidSettlementAdapter;
     String groupId;
 
     ArrayList<PayerModel> payerModels;
@@ -81,6 +85,17 @@ public class BillSettlementActivity extends AppCompatActivity {
         binding.transactionRyc.setAdapter(billSettlementAdapter);
         binding.groupName.setText(getIntent().getStringExtra("group_name")+" Group Settlement");
         //        return new Gson().fromJson(members, );
+
+        RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this);
+        binding.paidBillsRyc.setLayoutManager(layoutManager1);
+        paidSettlementAdapter = new BillSettlementAdapter();
+        paidSettlementAdapter.setContext(this);
+        binding.paidBillsRyc.setAdapter(paidSettlementAdapter);
+
+
+
+
+
         String billsJson = getIntent().getStringExtra("bills");
         if(billsJson!=null){
 
@@ -102,10 +117,13 @@ public class BillSettlementActivity extends AppCompatActivity {
                     showRecordPaymentDialog(model);
 
                 }else if(type.equals(SettleType.SETTLE_BY_UPI)) {
-                    Toast.makeText(BillSettlementActivity.this, "Open Upi", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(BillSettlementActivity.this, "Open Upi", Toast.LENGTH_SHORT).show();
                 }else if(type.equals(SettleType.SETTLE_AS_ADMIN)) {
-                    Toast.makeText(BillSettlementActivity.this, "Open Cash Dialog", Toast.LENGTH_SHORT).show();
+                    model.setSettle_type(SettleType.SETTLE_AS_ADMIN.toString());
+                    showRecordPaymentDialog(model);
+//                    Toast.makeText(BillSettlementActivity.this, "Open Cash Dialog", Toast.LENGTH_SHORT).show();
                 }else {
+                    shareViaWhatsApp("₹"+model.getPayable_amount());
 
                     Toast.makeText(BillSettlementActivity.this, "Open share dialog", Toast.LENGTH_SHORT).show();
 
@@ -125,6 +143,12 @@ public class BillSettlementActivity extends AppCompatActivity {
 
     void processArrayList(ArrayList<BillModel> billModels){
         simpleBillMemberModels = new ArrayList<>();
+        totalExpense =0;
+        splitCount = 0;
+        count =0;
+        equalSplitAmount =0;
+        simpleBillMemberModels = new ArrayList<>();
+        transactions = new ArrayList<>();
         for (BillModel billModel:billModels){
 
             totalExpense = (float) (totalExpense+billModel.getTotal_expense());
@@ -256,6 +280,7 @@ public class BillSettlementActivity extends AppCompatActivity {
     void fetchSettlementHistory(){
         payerModels = new ArrayList<>();
         receiverModels = new ArrayList<>();
+        settlementModels = new ArrayList<>();
         List<Object> searchQuery = new ArrayList<>();
         searchQuery.add(Query.Companion.equal("group_id",groupId));
         DatabaseUtils.fetchDocuments(BillSettlementActivity.this,
@@ -280,6 +305,10 @@ public class BillSettlementActivity extends AppCompatActivity {
                             payerModels.add(new PayerModel(payerNumber,payername,Float.valueOf(paidAmount)));
                             receiverModels.add(new ReceiverModel(receiverNumber,receiverName,Float.valueOf(receivedAmount)));
 
+                        }
+                        paidSettlementAdapter.setData(settlementModels);
+                        if(settlementModels.size()==0){
+                            binding.settledBills.setVisibility(View.GONE);
                         }
                         createTransactionList();
                     }
@@ -650,6 +679,7 @@ public class BillSettlementActivity extends AppCompatActivity {
                         bottomSheetDialog.findViewById(R.id.submit_loading).setVisibility(View.GONE);
                         bottomSheetDialog.findViewById(R.id.settle_up).setVisibility(View.VISIBLE);
                         bottomSheetDialog.dismiss();
+                        processArrayList(billModelArrayList);
 
                     }
 
@@ -666,5 +696,15 @@ public class BillSettlementActivity extends AppCompatActivity {
         );
 
     }
-
+    public void shareViaWhatsApp(String message) {
+        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+        whatsappIntent.setType("text/plain");
+        whatsappIntent.setPackage("com.whatsapp");
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "Hey it's just a simple reminder that you need to pay my "+message);
+        try {
+            startActivity(whatsappIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.whatsapp")));
+        }
+    }
 }

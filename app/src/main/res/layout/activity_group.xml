@@ -73,7 +73,6 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="65dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +85,7 @@
                 android:id="@+id/linearLayout2"
                 android:layout_width="45dp"
                 android:layout_height="90dp"
+                android:visibility="gone"
                 android:layout_gravity="center"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="7dp"

@@ -34,11 +34,15 @@ public class SharedPref {
         saveUser(user);
     }
 
+    public static String getUserId(Context context){
+        SharedPref sharedPref = new SharedPref(context);
+        UserModel userModel = sharedPref.getUserModel();
+        return userModel.getId();
+    }
     public String getUserId(){
         UserModel userModel = getUserModel();
         return userModel.getId();
     }
-
     public String getMyPhoneNumber(){
         UserModel userModel = getUserModel();
         return userModel.getPhone_number();

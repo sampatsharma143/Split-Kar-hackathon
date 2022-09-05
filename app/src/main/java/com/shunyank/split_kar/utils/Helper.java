@@ -97,4 +97,10 @@ public class Helper {
         return  df.format(value);
 
     }
+    public static float  getValueInFloat(float value){
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        return Float.parseFloat( df.format(value));
+
+    }
 }

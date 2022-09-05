@@ -371,6 +371,7 @@ public class CreateGroupActivity extends AppCompatActivity {
         if(requestCode==110){
 
             if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                binding.noPermissionLayout.setVisibility(View.GONE);
                 Toast.makeText(CreateGroupActivity.this, "Contacts Permission Granted", Toast.LENGTH_SHORT).show();
                 syncContacts();
             } else {

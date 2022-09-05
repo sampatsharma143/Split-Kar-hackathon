@@ -20,7 +20,7 @@
 
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
-
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:backgroundColor="@color/colorPrimary"
