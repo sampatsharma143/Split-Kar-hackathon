@@ -211,7 +211,8 @@ public class BillSettlementActivity extends AppCompatActivity {
         Log.e("----------","--------------------------");
         Log.e("total expense",String.valueOf(totalExpense));
         Log.e("split amount",String.valueOf(equalSplitAmount));
-
+        needToPayUsers = new ArrayList<>();
+        willGetUsers = new ArrayList<>();
 
         fetchSettlementHistory();
 
@@ -338,7 +339,7 @@ public class BillSettlementActivity extends AppCompatActivity {
         billSettlementAdapter.setData(transactions);
         if(transactions.size()==0) {
             binding.pendingBillsTitle.setVisibility(View.GONE);
-            
+
         }else {
             binding.pendingBillsTitle.setVisibility(View.VISIBLE);
 
