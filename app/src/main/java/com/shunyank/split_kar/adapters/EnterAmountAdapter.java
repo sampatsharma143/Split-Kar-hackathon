@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.shunyank.split_kar.R;
 import com.shunyank.split_kar.activities.GroupActivity;
+import com.shunyank.split_kar.adapters.listeners.AmountChangeListener;
 import com.shunyank.split_kar.models.SplitAmountModel;
 import com.shunyank.split_kar.network.model.GroupMemberCollectionModel;
 

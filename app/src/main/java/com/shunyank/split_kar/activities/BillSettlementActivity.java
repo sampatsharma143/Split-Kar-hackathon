@@ -1,23 +1,25 @@
 package com.shunyank.split_kar.activities;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
-import android.os.Build;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.shunyank.split_kar.R;
-import com.shunyank.split_kar.adapters.GroupBillsAdapter;
-import com.shunyank.split_kar.adapters.WhoWillPayWhomAdapter;
+import com.shunyank.split_kar.adapters.BillSettlementAdapter;
+import com.shunyank.split_kar.adapters.listeners.SettlementButtonClickListener;
 import com.shunyank.split_kar.databinding.ActivityBillSettlementBinding;
 import com.shunyank.split_kar.models.BillModel;
 import com.shunyank.split_kar.models.SettlementModel;
@@ -25,12 +27,11 @@ import com.shunyank.split_kar.network.AppWriteHelper;
 import com.shunyank.split_kar.network.Constants;
 import com.shunyank.split_kar.network.callbacks.DocumentListFetchListener;
 import com.shunyank.split_kar.network.utils.DatabaseUtils;
+import com.shunyank.split_kar.utils.SettleType;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.appwrite.Query;
 import io.appwrite.exceptions.AppwriteException;
@@ -50,7 +51,7 @@ public class BillSettlementActivity extends AppCompatActivity {
     private ArrayList<SimpleBillMemberModel> simpleBillMemberModels = new ArrayList<>();
     int count =0;
     ArrayList<SettlementModel> transactions = new ArrayList<>();
-    WhoWillPayWhomAdapter whoWillPayWhomAdapter;
+    BillSettlementAdapter billSettlementAdapter;
     String groupId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +62,9 @@ public class BillSettlementActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         binding.transactionRyc.setLayoutManager(layoutManager);
-        whoWillPayWhomAdapter = new WhoWillPayWhomAdapter();
-        binding.transactionRyc.setAdapter(whoWillPayWhomAdapter);
+        billSettlementAdapter = new BillSettlementAdapter();
+        billSettlementAdapter.setContext(this);
+        binding.transactionRyc.setAdapter(billSettlementAdapter);
         binding.groupName.setText(getIntent().getStringExtra("group_name")+" Group Settlement");
         //        return new Gson().fromJson(members, );
         String billsJson = getIntent().getStringExtra("bills");
@@ -76,6 +78,26 @@ public class BillSettlementActivity extends AppCompatActivity {
             Toast.makeText(this, "Something Went Wrong!", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+
+        billSettlementAdapter.setAdapterClickListener(new SettlementButtonClickListener() {
+            @Override
+            public void onClick(SettleType type, SettlementModel model) {
+                if(type.equals(SettleType.SETTLE_BY_CASH)){
+
+                    showRecordPaymentDialog(model);
+
+                }else if(type.equals(SettleType.SETTLE_BY_UPI)) {
+                    Toast.makeText(BillSettlementActivity.this, "Open Upi", Toast.LENGTH_SHORT).show();
+                }else if(type.equals(SettleType.SETTLE_AS_ADMIN)) {
+                    Toast.makeText(BillSettlementActivity.this, "Open Cash Dialog", Toast.LENGTH_SHORT).show();
+                }else {
+
+                    Toast.makeText(BillSettlementActivity.this, "Open share dialog", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
 
 
         binding.backButton.setOnClickListener(new View.OnClickListener() {
@@ -245,7 +267,7 @@ public class BillSettlementActivity extends AppCompatActivity {
 //        }
         checkOtherTransactionPos();
 
-        whoWillPayWhomAdapter.setData(transactions);
+        billSettlementAdapter.setData(transactions);
         Log.e("transactions",new Gson().toJson(transactions));
 
     }
@@ -437,54 +459,19 @@ public class BillSettlementActivity extends AppCompatActivity {
             this.user_data = user_data;
         }
     }
-    public class WhoPayWhomModel{
-
-
-
-
-
-
-
-        String whoWillPay;
-        float howMuchPay;
-        String toWhom;
-
-
-        public WhoPayWhomModel(String whoWillPay, float howMuchPay, String toWhom) {
-            this.whoWillPay = whoWillPay;
-            this.howMuchPay = howMuchPay;
-            this.toWhom = toWhom;
-        }
-
-        public String getWhoWillPay() {
-            return whoWillPay;
-        }
-
-        public void setWhoWillPay(String whoWillPay) {
-            this.whoWillPay = whoWillPay;
-        }
-
-        public float getHowMuchPay() {
-            return howMuchPay;
-        }
-
-        public void setHowMuchPay(float howMuchPay) {
-            this.howMuchPay = howMuchPay;
-        }
-
-        public String getToWhom() {
-            return toWhom;
-        }
-
-        public void setToWhom(String toWhom) {
-            this.toWhom = toWhom;
-        }
-    }
 
     float getFloatValue(float value){
         DecimalFormat df = new DecimalFormat("#.00");
 
         return Float.parseFloat( df.format(value));
+
+    }
+
+    public void showRecordPaymentDialog(SettlementModel model){
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.settle_payement_layout);
+
+        bottomSheetDialog.show();
 
     }
 }

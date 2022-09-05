@@ -16,8 +16,7 @@ import com.google.gson.Gson;
 import com.shunyank.split_kar.R;
 import com.shunyank.split_kar.activities.BillSettlementActivity;
 import com.shunyank.split_kar.activities.GroupActivity;
-import com.shunyank.split_kar.models.SplitAmountModel;
-import com.shunyank.split_kar.network.model.GroupMemberCollectionModel;
+import com.shunyank.split_kar.adapters.listeners.AdapterClickListener;
 
 import java.util.ArrayList;
 

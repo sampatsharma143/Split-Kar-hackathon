@@ -1,5 +1,7 @@
 package com.shunyank.split_kar.activities;
 
+import static com.shunyank.split_kar.utils.Helper.getFloatValue;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,32 +15,25 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.shunyank.split_kar.R;
-import com.shunyank.split_kar.adapters.AdapterClickListener;
+import com.shunyank.split_kar.adapters.listeners.AdapterClickListener;
 import com.shunyank.split_kar.adapters.GroupBillsAdapter;
 import com.shunyank.split_kar.adapters.GroupMembersAdapter;
 import com.shunyank.split_kar.databinding.ActivityGroupBinding;
 import com.shunyank.split_kar.models.BillModel;
-import com.shunyank.split_kar.models.GroupMemberModel;
 import com.shunyank.split_kar.network.AppWriteHelper;
 import com.shunyank.split_kar.network.Constants;
 import com.shunyank.split_kar.network.callbacks.DocumentListFetchListener;
-import com.shunyank.split_kar.network.callbacks.DocumentUpdateListener;
 import com.shunyank.split_kar.network.model.GroupMemberCollectionModel;
-import com.shunyank.split_kar.network.model.UserModel;
 import com.shunyank.split_kar.network.utils.DatabaseUtils;
 import com.shunyank.split_kar.utils.SharedPref;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import io.appwrite.Query;
 import io.appwrite.exceptions.AppwriteException;
 import io.appwrite.models.Document;
-import io.appwrite.models.User;
 import kotlin.Result;
 
 public class GroupActivity extends AppCompatActivity {
@@ -131,7 +126,7 @@ public class GroupActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 groupBinding.balanceProgressBar.setVisibility(View.GONE);
                 groupBinding.getOrPay.setVisibility(View.VISIBLE);
-                groupBinding.getOrPay.setText("₹"+s);
+                groupBinding.getOrPay.setText("₹"+ getFloatValue(Float.parseFloat(s)));
 
             }
         });

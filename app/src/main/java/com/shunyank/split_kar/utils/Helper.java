@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.shunyank.split_kar.R;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -88,6 +89,12 @@ public class Helper {
 
         String date = DateFormat.format("dd MMM yy",calendar).toString();
         return date;
+
+    }
+   public static String  getFloatValue(float value){
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        return  df.format(value);
 
     }
 }

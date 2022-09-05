@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
-        android:minHeight="180dp"
         android:layout_margin="10dp"
         android:orientation="vertical">
 
@@ -35,12 +34,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:id="@+id/payer_profile"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/user_profile_default" />
 
                 <TextView
-                    android:id="@+id/payer"
+                    android:id="@+id/payer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -114,12 +114,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:id="@+id/receiver_profile"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/user_profile_default" />
 
                 <TextView
-                    android:id="@+id/receiver"
+                    android:id="@+id/receiver_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -185,7 +186,11 @@
                 android:paddingLeft="30dp"
                 android:drawableRight="@drawable/whatsapp_icon"
                 />
-
+            <Button
+                android:id="@+id/settle_as_admin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Settle as admin"/>
         </LinearLayout>
 
 

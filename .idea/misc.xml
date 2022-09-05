@@ -6,6 +6,7 @@
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/add_circle.xml" value="0.278" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/add_circle_big.xml" value="0.278" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/add_icon_big.xml" value="0.278" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/bottom_light_line_edt.xml" value="0.2955" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/bottom_line_edt.xml" value="0.3675" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/button_bg.xml" value="0.3665" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/button_bg_grey.xml" value="0.1" />
@@ -40,6 +41,7 @@
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/group_members_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/multi_person_layout.xml" value="0.25" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/remaining_payment_between_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/settle_payement_layout.xml" value="0.365625" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/split_between_layout.xml" value="0.365625" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/who_pay_whom_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/menu/bottom_nav_menu.xml" value="0.29375" />

@@ -1,4 +1,4 @@
-package com.shunyank.split_kar.adapters;
+package com.shunyank.split_kar.adapters.listeners;
 
 import com.shunyank.split_kar.models.SplitAmountModel;
 

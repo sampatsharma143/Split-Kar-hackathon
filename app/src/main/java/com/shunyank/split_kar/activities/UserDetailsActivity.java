@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.shunyank.split_kar.MainActivity;
 import com.shunyank.split_kar.R;
-import com.shunyank.split_kar.SplashActivity;
-import com.shunyank.split_kar.adapters.AdapterClickListener;
+import com.shunyank.split_kar.adapters.listeners.AdapterClickListener;
 import com.shunyank.split_kar.adapters.AvatarAdapter;
 import com.shunyank.split_kar.databinding.ActivityUserDetailsBinding;
 import com.shunyank.split_kar.network.AppWriteHelper;
@@ -37,15 +35,8 @@ import io.appwrite.Client;
 import io.appwrite.exceptions.AppwriteException;
 import io.appwrite.models.Document;
 import io.appwrite.models.File;
-import io.appwrite.models.Session;
-import io.appwrite.models.SessionList;
-import io.appwrite.models.User;
-import io.appwrite.services.Account;
 import io.appwrite.services.Databases;
 import kotlin.Result;
-import kotlin.coroutines.Continuation;
-import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.EmptyCoroutineContext;
 
 public class UserDetailsActivity extends AppCompatActivity {
 

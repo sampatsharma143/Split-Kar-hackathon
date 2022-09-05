@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shunyank.split_kar.R;
-import com.shunyank.split_kar.adapters.AmountChangeListener;
+import com.shunyank.split_kar.adapters.listeners.AmountChangeListener;
 import com.shunyank.split_kar.adapters.EnterAmountAdapter;
 import com.shunyank.split_kar.adapters.SplitBetweenMembersAdapter;
 import com.shunyank.split_kar.databinding.ActivityBillCreatorBinding;

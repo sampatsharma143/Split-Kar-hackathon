@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shunyank.split_kar.R;
+import com.shunyank.split_kar.adapters.listeners.AdapterClickListener;
 import com.shunyank.split_kar.models.GroupModel;
 import com.shunyank.split_kar.utils.Helper;
 

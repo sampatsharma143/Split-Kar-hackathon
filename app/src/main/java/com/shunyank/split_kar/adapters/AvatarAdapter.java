@@ -1,7 +1,6 @@
 package com.shunyank.split_kar.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.shunyank.split_kar.R;
 import com.shunyank.split_kar.activities.UserDetailsActivity;
+import com.shunyank.split_kar.adapters.listeners.AdapterClickListener;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import io.appwrite.models.File;
 
 public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.AdapterViewHolder> {
 

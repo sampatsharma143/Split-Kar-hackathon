@@ -23,21 +23,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.shunyank.split_kar.R;
-import com.shunyank.split_kar.activities.BillSettlementActivity;
 import com.shunyank.split_kar.activities.CreateGroupActivity;
 import com.shunyank.split_kar.activities.GroupActivity;
 import com.shunyank.split_kar.adapters.GroupListAdapter;
-import com.shunyank.split_kar.adapters.AdapterClickListener;
+import com.shunyank.split_kar.adapters.listeners.AdapterClickListener;
 import com.shunyank.split_kar.databinding.FragmentHomeBinding;
 import com.shunyank.split_kar.models.GroupModel;
 import com.shunyank.split_kar.network.AppWriteHelper;
 import com.shunyank.split_kar.network.callbacks.ErrorListener;
 import com.shunyank.split_kar.network.utils.DatabaseUtils;
-import com.shunyank.split_kar.utils.Helper;
 import com.shunyank.split_kar.utils.SharedPref;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import io.appwrite.Query;

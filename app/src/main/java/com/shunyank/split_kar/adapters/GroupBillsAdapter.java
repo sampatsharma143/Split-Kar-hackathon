@@ -11,8 +11,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shunyank.split_kar.R;
+import com.shunyank.split_kar.adapters.listeners.AdapterClickListener;
 import com.shunyank.split_kar.models.BillModel;
-import com.shunyank.split_kar.models.SplitAmountModel;
 import com.shunyank.split_kar.utils.Helper;
 
 import java.util.ArrayList;

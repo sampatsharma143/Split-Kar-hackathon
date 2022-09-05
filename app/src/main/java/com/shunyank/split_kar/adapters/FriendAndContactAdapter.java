@@ -12,18 +12,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.shunyank.split_kar.R;
-import com.shunyank.split_kar.models.FriendAndContactModel;
+import com.shunyank.split_kar.adapters.listeners.AdapterClickListener;
 import com.shunyank.split_kar.models.PhoneContact;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 //RecyclerView.Adapter<FriendAndContactAdapter.AdapterViewHolder>
 public class FriendAndContactAdapter extends ListAdapter<PhoneContact,FriendAndContactAdapter.AdapterViewHolder> {
