@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -73,6 +74,8 @@ public class RemainingPaymentMembersAdapter extends RecyclerView.Adapter<Remaini
 
         }else {
             holder.paymentTitle.setText("Need To Pay");
+            holder.main_card.setCardBackgroundColor(context.getResources().getColor(R.color.light_red));
+
             holder.willpay.setText(gmcm.getNeed_to_pay());
             holder.willget.setVisibility(View.GONE);
 
@@ -95,6 +98,7 @@ public class RemainingPaymentMembersAdapter extends RecyclerView.Adapter<Remaini
         TextView willget;
         TextView willpay;
         TextView paymentTitle;
+        CardView main_card;
         public AdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             profile = itemView.findViewById(R.id.profile_image);
@@ -102,6 +106,7 @@ public class RemainingPaymentMembersAdapter extends RecyclerView.Adapter<Remaini
             willpay = itemView.findViewById(R.id.willpay);
             userName = itemView.findViewById(R.id.name_tv);
             paymentTitle = itemView.findViewById(R.id.pay_or_get_text);
+            main_card = itemView.findViewById(R.id.main_card);
         }
     }
 }

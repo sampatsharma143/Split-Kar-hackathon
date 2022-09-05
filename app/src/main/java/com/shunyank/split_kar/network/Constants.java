@@ -18,4 +18,5 @@ public class Constants {
     public static String GroupBillsCollectionId = "group_bills";
     public static String BillsCollectionId = "bills";
     public static String GroupMembersCollectionId = "group_members";
+    public static String GroupsSettlementCollectionId = "groups_settlement";
 }

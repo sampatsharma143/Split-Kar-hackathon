@@ -149,6 +149,7 @@ public class GroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GroupActivity.this,BillSettlementActivity.class);
+                intent.putExtra("group_name",groupName);
                 if(!calculatedBillModels.isEmpty()){
                     intent.putExtra("bills",calculatedBillModels);
                     startActivity(intent);

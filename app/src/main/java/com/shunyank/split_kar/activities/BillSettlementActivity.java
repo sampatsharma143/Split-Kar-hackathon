@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -60,18 +61,27 @@ public class BillSettlementActivity extends AppCompatActivity {
         binding.transactionRyc.setLayoutManager(layoutManager);
         whoWillPayWhomAdapter = new WhoWillPayWhomAdapter();
         binding.transactionRyc.setAdapter(whoWillPayWhomAdapter);
-
+        binding.groupName.setText(getIntent().getStringExtra("group_name")+" Group Settlement");
         //        return new Gson().fromJson(members, );
         String billsJson = getIntent().getStringExtra("bills");
         if(billsJson!=null){
 
             billModelArrayList = new Gson().fromJson(billsJson,new TypeToken<ArrayList<BillModel>>() {}.getType());
             Log.e("groupid",billModelArrayList.get(0).getGroup_id());
+
             processArrayList(billModelArrayList);
         }else {
             Toast.makeText(this, "Something Went Wrong!", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BillSettlementActivity.super.onBackPressed();
+            }
+        });
 
     }
 
