@@ -386,6 +386,13 @@ public class BillSettlementActivity extends AppCompatActivity {
         }
     }
     public class WhoPayWhomModel{
+
+
+
+
+
+
+
         String whoWillPay;
         float howMuchPay;
         String toWhom;

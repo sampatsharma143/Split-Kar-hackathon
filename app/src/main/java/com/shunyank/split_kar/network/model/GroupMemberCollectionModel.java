@@ -10,7 +10,6 @@ public class GroupMemberCollectionModel {
     boolean member_is_on_app;
     boolean is_admin;
     String user_data;
-
     public String getUser_data() {
         return user_data;
     }
