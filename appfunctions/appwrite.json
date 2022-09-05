@@ -1,0 +1,20 @@
+{
+    "projectId": "630a0ce5bf7e038aa1a1",
+    "projectName": "Split-Kar",
+    "functions": [
+        {
+            "$id": "check_member_on_app",
+            "name": "checkMemberIsOnApp",
+            "runtime": "python-3.9",
+            "path": "functions/checkMemberIsOnApp",
+            "entrypoint": "src/index.py",
+            "ignore": [
+                "__pypackages__"
+            ],
+            "execute": ["role:all"],
+            "events": ["databases.default.collections.group_members_ct.documents.*.create"],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}

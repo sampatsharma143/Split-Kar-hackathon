@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Split Kar</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_bills">Bills</string>
+    <string name="title_profile">Profile</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="please_enter_phone_number">Please enter phone number</string>
+    <string name="please_enter_correct_number">Please enter correct number</string>
+    <string name="code_sent_to">OTP sent to %s</string>
+    <string name="sending_otp">Sending OTP to %s</string>
+    <string name="try_again">Try Again</string>
+    <string name="user_creation_message">User created successfully</string>
+    <string name="please_enter_your_name">Please enter your name</string>
+    <string name="profile_updated_successfully">Profile Updated Successfully</string>
+    <string name="name_avatar">Profile</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="please_select_avatar">Please select avatar</string>
+
+</resources>

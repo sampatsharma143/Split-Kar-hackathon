@@ -1,0 +1,100 @@
+{
+  "project_info": {
+    "project_number": "234707376596",
+    "project_id": "rajasthan-job-alerts",
+    "storage_bucket": "rajasthan-job-alerts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234707376596:android:4f885e0b16dc2e6e781e41",
+        "android_client_info": {
+          "package_name": "com.rajasthan.job"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234707376596-aduofmi3h62phd6gve7hrganucom9l4c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rajasthan.job",
+            "certificate_hash": "20ac8e2a8dc22214c222bcf6d15d5e6a9d3d6c05"
+          }
+        },
+        {
+          "client_id": "234707376596-h1daanlietsv3gtoe9stgv3tl3mdjqtj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rajasthan.job",
+            "certificate_hash": "796001bc6d4b11cef32f9cad489f813e89d98e27"
+          }
+        },
+        {
+          "client_id": "234707376596-i4l50u7pt6067f178qedv7gtmajbng20.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rajasthan.job",
+            "certificate_hash": "e25b20d3cc1d2fde509da41336857f053513da4b"
+          }
+        },
+        {
+          "client_id": "234707376596-u5c0jt0ap75m3angi58ubdn808u1kq18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdgEOUYrA6urZVqpwODgaRQZUgTq6pnbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234707376596-u5c0jt0ap75m3angi58ubdn808u1kq18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234707376596:android:1de6c2346edd95a0781e41",
+        "android_client_info": {
+          "package_name": "com.shunyank.split_kar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234707376596-m9dr0k0svvkl8h2rdv9k7d8r5rmgsu37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shunyank.split_kar",
+            "certificate_hash": "e25b20d3cc1d2fde509da41336857f053513da4b"
+          }
+        },
+        {
+          "client_id": "234707376596-u5c0jt0ap75m3angi58ubdn808u1kq18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdgEOUYrA6urZVqpwODgaRQZUgTq6pnbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234707376596-u5c0jt0ap75m3angi58ubdn808u1kq18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

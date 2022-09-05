@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/add_circle.xml" value="0.278" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/add_circle_big.xml" value="0.278" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/add_icon_big.xml" value="0.278" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/bottom_line_edt.xml" value="0.3675" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/button_bg.xml" value="0.3665" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/button_bg_grey.xml" value="0.1" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/circle.xml" value="0.179" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/edt_cursor.xml" value="0.3665" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/group_list_bg.xml" value="0.3145" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2355" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/ic_bill_icon.xml" value="0.323" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2325" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/invite_bg.xml" value="0.357" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/drawable/phone_number_edt_bg.xml" value="0.3665" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_bill_creator.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_bill_details.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_bill_settlement.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_create_group.xml" value="0.33" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_group.xml" value="0.33" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/activity_user_details.xml" value="0.31927083333333334" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/added_participents_layout.xml" value="0.5" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/avatar_layout.xml" value="0.5" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/create_group_dialog.xml" value="0.49577464788732395" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/fragment_dashboard.xml" value="0.22604166666666667" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/friend_card_layout.xml" value="0.33" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/group_bill_layout.xml" value="0.3223958333333333" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/group_for_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/group_list_layout.xml" value="0.5" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/group_members_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/multi_person_layout.xml" value="0.25" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/remaining_payment_between_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/split_between_layout.xml" value="0.365625" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/layout/who_pay_whom_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/ShunyankGroup_pvt_ltd/ClientsProjects/SplitKar/app/src/main/res/menu/bottom_nav_menu.xml" value="0.29375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
+  </component>
+</project>
