@@ -20,6 +20,7 @@ import com.shunyank.split_kar.adapters.GroupBillsAdapter;
 import com.shunyank.split_kar.adapters.WhoWillPayWhomAdapter;
 import com.shunyank.split_kar.databinding.ActivityBillSettlementBinding;
 import com.shunyank.split_kar.models.BillModel;
+import com.shunyank.split_kar.models.SettlementModel;
 import com.shunyank.split_kar.network.AppWriteHelper;
 import com.shunyank.split_kar.network.Constants;
 import com.shunyank.split_kar.network.callbacks.DocumentListFetchListener;
@@ -265,6 +266,7 @@ public class BillSettlementActivity extends AppCompatActivity {
                 if (willGet>needToPay) {
 
                     float balance = willGet-needToPay;
+                    SettlementModel settlementModel = new SettlementModel();
                     transactions.add(new WhoPayWhomModel(needToPayUsers.get(j).getMember_name(), needToPay, willGetUsers.get(i).getMember_name()));
                     willGetUsers.get(i).setWill_get(String.valueOf(balance));
                     needToPayUsers.remove(needToPayUsers.get(j));
@@ -385,7 +387,7 @@ public class BillSettlementActivity extends AppCompatActivity {
             this.user_data = user_data;
         }
     }
-    public class WhoPayWhomModel{
+    public class WhoPayWhomModels{
 
 
 
