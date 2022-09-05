@@ -1,6 +1,8 @@
 package com.shunyank.split_kar.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,7 +12,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -22,16 +26,21 @@ import com.shunyank.split_kar.adapters.BillSettlementAdapter;
 import com.shunyank.split_kar.adapters.listeners.SettlementButtonClickListener;
 import com.shunyank.split_kar.databinding.ActivityBillSettlementBinding;
 import com.shunyank.split_kar.models.BillModel;
+import com.shunyank.split_kar.models.PayerModel;
+import com.shunyank.split_kar.models.ReceiverModel;
 import com.shunyank.split_kar.models.SettlementModel;
 import com.shunyank.split_kar.network.AppWriteHelper;
 import com.shunyank.split_kar.network.Constants;
+import com.shunyank.split_kar.network.callbacks.DocumentCreateListener;
 import com.shunyank.split_kar.network.callbacks.DocumentListFetchListener;
 import com.shunyank.split_kar.network.utils.DatabaseUtils;
 import com.shunyank.split_kar.utils.SettleType;
+import com.shunyank.split_kar.utils.SharedPref;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import io.appwrite.Query;
 import io.appwrite.exceptions.AppwriteException;
@@ -53,6 +62,11 @@ public class BillSettlementActivity extends AppCompatActivity {
     ArrayList<SettlementModel> transactions = new ArrayList<>();
     BillSettlementAdapter billSettlementAdapter;
     String groupId;
+
+    ArrayList<PayerModel> payerModels;
+    ArrayList<ReceiverModel> receiverModels;
+    private ArrayList<SettlementModel> settlementModels;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +98,7 @@ public class BillSettlementActivity extends AppCompatActivity {
             @Override
             public void onClick(SettleType type, SettlementModel model) {
                 if(type.equals(SettleType.SETTLE_BY_CASH)){
-
+                    model.setSettle_type(SettleType.SETTLE_BY_CASH.toString());
                     showRecordPaymentDialog(model);
 
                 }else if(type.equals(SettleType.SETTLE_BY_UPI)) {
@@ -197,6 +211,11 @@ public class BillSettlementActivity extends AppCompatActivity {
         Log.e("----------","--------------------------");
         Log.e("total expense",String.valueOf(totalExpense));
         Log.e("split amount",String.valueOf(equalSplitAmount));
+
+
+        fetchSettlementHistory();
+
+
         for (SimpleBillMemberModel model:simpleBillMemberModels){
 
             // add or remove settlement done on this group
@@ -225,14 +244,59 @@ public class BillSettlementActivity extends AppCompatActivity {
 //            Log.e("memeber Will Get",model.will_get);
 //            Log.e("----------","--------------------------");
         }
-        Log.e("will get user size",""+willGetUsers.size());
-        Log.e("need to user size",""+needToPayUsers.size());
-        createTransactionList();
+//        Log.e("will get user size",""+willGetUsers.size());
+//        Log.e("need to user size",""+needToPayUsers.size());
+
 
 
 
 
     }
+    void fetchSettlementHistory(){
+        payerModels = new ArrayList<>();
+        receiverModels = new ArrayList<>();
+        List<Object> searchQuery = new ArrayList<>();
+        searchQuery.add(Query.Companion.equal("group_id",groupId));
+        DatabaseUtils.fetchDocuments(BillSettlementActivity.this,
+                DatabaseUtils.getDatabase(AppWriteHelper.GetAppWriteClient(BillSettlementActivity.this)),
+                AppWriteHelper.getCollectionId(Constants.GroupsSettlementCollectionId),
+                searchQuery,
+                new DocumentListFetchListener(){
+
+
+                    @Override
+                    public void onFetchSuccessfully(List<Document> documents) {
+                         settlementModels = DatabaseUtils.convertToModelList(documents,SettlementModel.class);
+                        for (SettlementModel model:settlementModels){
+
+                            String payername = model.getPayer_member_name();
+                            String payerNumber = model.getPayer_member_number();
+                            String paidAmount = model.getPayable_amount();
+
+                            String receiverName = model.getPayer_member_name();
+                            String receiverNumber = model.getPayer_member_number();
+                            String receivedAmount = model.getPayable_amount();
+                            payerModels.add(new PayerModel(payerNumber,payername,Float.valueOf(paidAmount)));
+                            receiverModels.add(new ReceiverModel(receiverNumber,receiverName,Float.valueOf(receivedAmount)));
+
+                        }
+                        createTransactionList();
+                    }
+
+                    @Override
+                    public void onFailed(Result.Failure failure) {
+
+                    }
+
+                    @Override
+                    public void onException(AppwriteException exception) {
+
+                    }
+                });
+
+    }
+
+
     void createTransactionList(){
 //        outerscope:
 //        for (SimpleBillMemberModel willGetModel:willGetUsers){
@@ -265,13 +329,73 @@ public class BillSettlementActivity extends AppCompatActivity {
 //
 //
 //        }
+
+        fixingNeedToPay();
+        fixingWillGet();
+
         checkOtherTransactionPos();
 
         billSettlementAdapter.setData(transactions);
+        if(transactions.size()==0) {
+            binding.pendingBillsTitle.setVisibility(View.GONE);
+            
+        }else {
+            binding.pendingBillsTitle.setVisibility(View.VISIBLE);
+
+        }
         Log.e("transactions",new Gson().toJson(transactions));
 
     }
+    void fixingNeedToPay(){
+        for(int j =0; j<payerModels.size();j++){
+            for (int i =0; i<needToPayUsers.size();i++){
 
+                if(payerModels.get(j).getMember_mobile_number().contentEquals(needToPayUsers.get(i).getMember_number())){
+
+                    float needToPay = Float.valueOf(needToPayUsers.get(i).getNeed_to_pay());
+                    float paid = payerModels.get(j).getPaymentPaid();
+                    float balance = needToPay-paid;
+                    if(balance<0.3){
+
+                        needToPayUsers.remove( needToPayUsers.get(i));
+                        payerModels.get(j).setPaymentPaid(Math.abs(balance));
+                        fixingNeedToPay();
+                    }else if(balance>0.3){
+
+                        payerModels.remove( payerModels.get(j));
+                        needToPayUsers.get(i).setNeed_to_pay(String.valueOf(Math.abs(balance)));
+                        fixingNeedToPay();
+                    }
+                }
+
+            }
+        }
+    }
+    void fixingWillGet(){
+        for(int j =0; j<receiverModels.size();j++){
+            for (int i =0; i<willGetUsers.size();i++){
+
+                if(receiverModels.get(j).getMember_mobile_number().contentEquals(willGetUsers.get(i).getMember_number())){
+
+                    float willget = Float.valueOf(willGetUsers.get(i).getWill_get());
+                    float received = receiverModels.get(j).getPaymentReceived();
+                    float balance = willget-received;
+                    if(balance<0.3){
+
+                        needToPayUsers.remove( willGetUsers.get(i));
+                        receiverModels.get(j).setPaymentReceived(Math.abs(balance));
+                        fixingNeedToPay();
+                    }else if(balance>0.3){
+
+                        receiverModels.remove( receiverModels.get(j));
+                        willGetUsers.get(i).setWill_get(String.valueOf(Math.abs(balance)));
+                        fixingNeedToPay();
+                    }
+                }
+
+            }
+        }
+    }
     void checkOtherTransactionPos(){
         for (int j=0;j<needToPayUsers.size();j++) {
 
@@ -467,11 +591,79 @@ public class BillSettlementActivity extends AppCompatActivity {
 
     }
 
-    public void showRecordPaymentDialog(SettlementModel model){
+    public void showRecordPaymentDialog(  SettlementModel model){
+        String payer = model.getPayer_member_name();
+        String receiver = model.getReceiver_member_name();
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.settle_payement_layout);
+
+        TextView paymentDirection = bottomSheetDialog.findViewById(R.id.payment_direction_text);
+        TextView payerOrReceiver = bottomSheetDialog.findViewById(R.id.payer_or_receiver);
+        EditText amount = bottomSheetDialog.findViewById(R.id.amount_edt);
+        ConstraintLayout loading =bottomSheetDialog.findViewById(R.id.submit_loading);
+        AppCompatButton  submit = bottomSheetDialog.findViewById(R.id.settle_up);
+        amount.setClickable(false);
+
+
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loading.setVisibility(View.VISIBLE);
+                submit.setVisibility(View.GONE);
+                model.setIs_settled(true);
+                recordNewPayment(model,bottomSheetDialog);
+            }
+        });
+
+
+
+        amount.setText("₹"+model.getPayable_amount());
+        if(model.getReceiver_member_number().contentEquals(SharedPref.getMyPhoneNumber(this))){
+
+            paymentDirection.setText("Received From ");
+            payerOrReceiver.setText(payer);
+        }
+        else if(model.getPayer_member_number().contentEquals(SharedPref.getMyPhoneNumber(this))){
+
+
+            paymentDirection.setText("Paid to ");
+            payerOrReceiver.setText(receiver);
+        }
+
 
         bottomSheetDialog.show();
 
     }
+
+
+    public void recordNewPayment(SettlementModel model,BottomSheetDialog bottomSheetDialog ){
+
+        DatabaseUtils.createDocument(BillSettlementActivity.this,
+                DatabaseUtils.getDatabase(AppWriteHelper.GetAppWriteClient(BillSettlementActivity.this)),
+                AppWriteHelper.getCollectionId(Constants.GroupsSettlementCollectionId),
+                DatabaseUtils.convertToHashmap(model),
+                new DocumentCreateListener() {
+                    @Override
+                    public void onCreatedSuccessfully(Document document) {
+                        bottomSheetDialog.findViewById(R.id.submit_loading).setVisibility(View.GONE);
+                        bottomSheetDialog.findViewById(R.id.settle_up).setVisibility(View.VISIBLE);
+                        bottomSheetDialog.dismiss();
+
+                    }
+
+                    @Override
+                    public void onFailed(Result.Failure failure) {
+                            failure.exception.printStackTrace();
+                    }
+
+                    @Override
+                    public void onException(AppwriteException exception) {
+                            exception.printStackTrace();
+                    }
+                }
+        );
+
+    }
+
 }

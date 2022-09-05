@@ -3,11 +3,6 @@ package com.shunyank.split_kar.models;
 import com.google.gson.annotations.SerializedName;
 
 public class SettlementModel {
-    @SerializedName("$id")
-    String id;
-    @SerializedName("$created_at")
-    String createdAt;
-
     String group_id;
     String payer_member_name,payer_member_number,payer_member_app_id,payer_user_data;
     String receiver_member_name,receiver_member_number,receiver_member_app_id,receiver_user_data;
@@ -15,7 +10,15 @@ public class SettlementModel {
     boolean receiver_member_is_on_app,receiver_is_admin;
     boolean is_settled;
     String payable_amount;
+    String settle_type;
 
+    public String getSettle_type() {
+        return settle_type;
+    }
+
+    public void setSettle_type(String settle_type) {
+        this.settle_type = settle_type;
+    }
 
     public String getPayable_amount() {
         return payable_amount;
@@ -53,21 +56,7 @@ public class SettlementModel {
         this.receiver_is_admin = receiver_is_admin;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
 
     public String getGroup_id() {
         return group_id;

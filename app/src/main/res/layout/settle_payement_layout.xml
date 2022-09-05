@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16sp"
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="@color/grey_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Record a payment"
+                android:textColor="@color/blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/payment_direction_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/koho_semibold"
+                android:text="Received from "
+                android:textColor="@color/grey_50"
+                android:textSize="18sp"
+
+                />
+
+            <TextView
+                android:id="@+id/payer_or_receiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/koho_bold"
+                android:text="Sampat SHarma"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+
+                />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/amount_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_light_line_edt"
+            android:fontFamily="@font/koho_bold"
+            android:hint="0"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:clickable="false"
+            android:padding="10dp"
+            android:textColor="@color/black"
+
+            android:textColorHint="@color/grey_50"
+            android:textCursorDrawable="@drawable/edt_cursor"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="60dp"
+            >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/settle_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/button_bg"
+                android:text="Settle Up"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/submit_loading"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:background="@drawable/button_bg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ProgressBar
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:indeterminateTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
