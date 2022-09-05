@@ -49,8 +49,9 @@ public class BillSettlementActivity extends AppCompatActivity {
     ArrayList<SimpleBillMemberModel> willGetUsers = new ArrayList<>();
     private ArrayList<SimpleBillMemberModel> simpleBillMemberModels = new ArrayList<>();
     int count =0;
-    ArrayList<WhoPayWhomModel> transactions = new ArrayList<>();
+    ArrayList<SettlementModel> transactions = new ArrayList<>();
     WhoWillPayWhomAdapter whoWillPayWhomAdapter;
+    String groupId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +69,8 @@ public class BillSettlementActivity extends AppCompatActivity {
         if(billsJson!=null){
 
             billModelArrayList = new Gson().fromJson(billsJson,new TypeToken<ArrayList<BillModel>>() {}.getType());
-            Log.e("groupid",billModelArrayList.get(0).getGroup_id());
-
+//            Log.e("groupid",);
+            groupId = billModelArrayList.get(0).getGroup_id();
             processArrayList(billModelArrayList);
         }else {
             Toast.makeText(this, "Something Went Wrong!", Toast.LENGTH_SHORT).show();
@@ -267,15 +268,64 @@ public class BillSettlementActivity extends AppCompatActivity {
 
                     float balance = willGet-needToPay;
                     SettlementModel settlementModel = new SettlementModel();
-                    transactions.add(new WhoPayWhomModel(needToPayUsers.get(j).getMember_name(), needToPay, willGetUsers.get(i).getMember_name()));
+
+                    settlementModel.setGroup_id(groupId);
+                    settlementModel.setIs_settled(false);
+                    settlementModel.setPayable_amount(String.valueOf(needToPay));
+                    settlementModel.setPayerDetails(
+                            needToPayUsers.get(j).getMember_name(),
+                            needToPayUsers.get(j).getMember_number(),
+                            needToPayUsers.get(j).getMember_app_id(),
+                            needToPayUsers.get(j).getUser_data(),
+                            needToPayUsers.get(j).isMember_is_on_app(),
+                            needToPayUsers.get(j).isIs_admin()
+                    );
+
+                    settlementModel.setReceiverDetails(
+                            willGetUsers.get(i).getMember_name(),
+                            willGetUsers.get(i).getMember_number(),
+                            willGetUsers.get(i).getMember_app_id(),
+                            willGetUsers.get(i).getUser_data(),
+                            willGetUsers.get(i).isMember_is_on_app(),
+                            willGetUsers.get(i).isIs_admin()
+                    );
+
+
+
+//                    transactions.add(new WhoPayWhomModel(needToPayUsers.get(j).getMember_name(), needToPay, willGetUsers.get(i).getMember_name()));
+                    transactions.add(settlementModel);
                     willGetUsers.get(i).setWill_get(String.valueOf(balance));
                     needToPayUsers.remove(needToPayUsers.get(j));
                     checkOtherTransactionPos();
                 }
                 else if( Math.abs(willGet-needToPay)<0.3){
+                    SettlementModel settlementModel = new SettlementModel();
+
+                    settlementModel.setGroup_id(groupId);
+                    settlementModel.setIs_settled(false);
+                    settlementModel.setPayable_amount(String.valueOf(needToPay));
+                    settlementModel.setPayerDetails(
+                            needToPayUsers.get(j).getMember_name(),
+                            needToPayUsers.get(j).getMember_number(),
+                            needToPayUsers.get(j).getMember_app_id(),
+                            needToPayUsers.get(j).getUser_data(),
+                            needToPayUsers.get(j).isMember_is_on_app(),
+                            needToPayUsers.get(j).isIs_admin()
+                    );
+
+                    settlementModel.setReceiverDetails(
+                            willGetUsers.get(i).getMember_name(),
+                            willGetUsers.get(i).getMember_number(),
+                            willGetUsers.get(i).getMember_app_id(),
+                            willGetUsers.get(i).getUser_data(),
+                            willGetUsers.get(i).isMember_is_on_app(),
+                            willGetUsers.get(i).isIs_admin()
+                    );
+
+
                     Log.e("needToPay", "" + Math.abs(willGet-needToPay));
                     float balance = willGet-needToPay;
-                    transactions.add(new WhoPayWhomModel(needToPayUsers.get(j).getMember_name(), needToPay, willGetUsers.get(i).getMember_name()));
+                    transactions.add(settlementModel);
                     willGetUsers.get(i).setWill_get(String.valueOf(balance));
                     needToPayUsers.remove(needToPayUsers.get(j));
                     checkOtherTransactionPos();
@@ -387,7 +437,7 @@ public class BillSettlementActivity extends AppCompatActivity {
             this.user_data = user_data;
         }
     }
-    public class WhoPayWhomModels{
+    public class WhoPayWhomModel{
 
 
 

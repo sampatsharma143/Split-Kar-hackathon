@@ -25,7 +25,12 @@ public class SettlementModel {
         this.payable_amount = payable_amount;
     }
 
-    public void setPayerDetails(String payer_member_name, String payer_member_number, String payer_member_app_id, String payer_user_data, boolean payer_member_is_on_app, boolean payer_is_admin) {
+    public void setPayerDetails(String payer_member_name,
+                                String payer_member_number,
+                                String payer_member_app_id,
+                                String payer_user_data,
+                                boolean payer_member_is_on_app,
+                                boolean payer_is_admin) {
         this.payer_member_name = payer_member_name;
         this.payer_member_number = payer_member_number;
         this.payer_member_app_id = payer_member_app_id;
@@ -34,8 +39,12 @@ public class SettlementModel {
         this.payer_is_admin = payer_is_admin;
     }
 
-    public void setReceiverDetails(String id, String receiver_member_name, String receiver_member_number, String receiver_member_app_id, String receiver_user_data, boolean receiver_member_is_on_app, boolean receiver_is_admin) {
-        this.id = id;
+    public void setReceiverDetails(String receiver_member_name,
+                                   String receiver_member_number,
+                                   String receiver_member_app_id,
+                                   String receiver_user_data,
+                                   boolean receiver_member_is_on_app,
+                                   boolean receiver_is_admin) {
         this.receiver_member_name = receiver_member_name;
         this.receiver_member_number = receiver_member_number;
         this.receiver_member_app_id = receiver_member_app_id;
