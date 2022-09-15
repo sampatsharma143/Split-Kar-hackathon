@@ -7,11 +7,11 @@ public class Constants {
 
     public static String getAppUrl() {
         // remove when uploading to github
-        return "https://superapp.megamind.app/v1";
+        return "";
     }
     public static String getProjectId() {
         // remove when uploading to github
-        return "630a0ce5bf7e038aa1a1";
+        return "";
     }
     public static String UserCollectionId = "users";
     public static String GroupCollectionId = "groups_list";
